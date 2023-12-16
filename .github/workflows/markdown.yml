@@ -16,3 +16,11 @@ jobs:
         with:
           source: index.md
           output: site/index.html
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload GitHub pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+            path: 'tempo'
