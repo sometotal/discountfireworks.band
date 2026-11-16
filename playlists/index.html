@@ -84,7 +84,7 @@ function showList(l) {
     '<p style="text-align:center"><a href="#">&larr; All playlists</a></p>' +
     cover(l) +
     '<h3>' + esc(l.name) + '</h3>' +
-    '<audio id="player" controls preload="metadata"></audio>' +
+    '<audio id="player" controls preload="metadata" controlsList="nodownload noplaybackrate" oncontextmenu="return false"></audio>' +
     '<div class="controls"><button id="prev" aria-label="Previous track">&#9198;</button><button id="next" aria-label="Next track">&#9197;</button></div>' +
     '<ol class="tracks">' + tracks.map(function (t, i) {
       return '<li data-i="' + i + '"><span class="num">' + (i + 1) + '</span><span>' + esc(title(t)) + '</span></li>';
