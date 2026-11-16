@@ -81,7 +81,6 @@ function showList(l) {
   document.title = 'Discount Fireworks - ' + l.name;
 
   app.innerHTML =
-    '<p style="text-align:center"><a href="#">&larr; All playlists</a></p>' +
     cover(l) +
     '<h3>' + esc(l.name) + '</h3>' +
     '<audio id="player" controls preload="metadata" controlsList="nodownload noplaybackrate" oncontextmenu="return false"></audio>' +
