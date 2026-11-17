@@ -1,0 +1,20 @@
+#!/bin/sh
+# Rebuilds the playlist pages when a commit touches playlists/, and adds the
+# generated pages to the same commit. Turn on once per clone with:
+#   git config core.hooksPath .githooks
+
+git diff --cached --quiet -- playlists .github/scripts/build-playlists.js && exit 0
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node isn't installed, so playlist pages weren't rebuilt." >&2
+  echo "The PR check will flag it if they're out of date." >&2
+  exit 0
+fi
+
+out=$(node .github/scripts/build-playlists.js --quiet) || exit 1
+[ -z "$out" ] && exit 0
+echo "$out" | while read -r action file; do
+  git add -A -- "$file" || exit 1
+done || exit 1
+echo "Playlist pages updated and added to this commit:"
+echo "$out" | sed 's/^/  /'

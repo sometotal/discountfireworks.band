@@ -1,0 +1,21 @@
+name: Playlist pages
+
+# Fails a pull request if the generated playlist pages don't match what's in
+# playlists/ (for example, the pre-commit hook wasn't turned on, or files were
+# uploaded on github.com). Fix it by running the build script and committing.
+on:
+  pull_request:
+    paths: ['playlists/**', '.github/scripts/build-playlists.js']
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node .github/scripts/build-playlists.js --check
