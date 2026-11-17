@@ -1,10 +1,19 @@
 # Playlists
 
-Drop a folder of audio files in here, commit, and push. The "Playlist pages"
-GitHub Action builds a page for it and commits that back, then GitHub Pages
-rebuilds (a minute or two) and it shows up at https://discountfireworks.band/playlists/
+Drop a folder of audio files in here, commit, and push (via a PR as usual).
+After GitHub Pages rebuilds (a minute or two), it shows up at
+https://discountfireworks.band/playlists/
 
-Because the Action adds a commit after yours, `git pull` before your next change.
+**One-time setup per computer:** turn on the repo's git hooks:
+
+    git config core.hooksPath .githooks
+
+Then whenever a commit touches `playlists/`, the pre-commit hook builds the
+playlist pages and adds them to that same commit. A "Playlist pages" check on
+each PR fails if the pages are missing or out of date (hook not set up, or
+files uploaded on github.com). To fix it, run the build yourself and commit:
+
+    node .github/scripts/build-playlists.js
 
 - Each folder becomes one playlist at `/playlists/<folder>/`. Share that link:
   its name shows up in link previews (iMessage, Slack, etc.). Old
@@ -19,10 +28,7 @@ Because the Action adds a commit after yours, `git pull` before your next change
   the link-preview image.
 - Folders or files starting with `_` or `.` are ignored.
 
-The `index.html` files are generated, so don't edit them by hand. To build
-them yourself (to preview before pushing):
-
-    node .github/scripts/build-playlists.js
+The `index.html` files are generated, so don't edit them by hand.
 
 The player itself is `player.js` and `player.css` in this folder.
 

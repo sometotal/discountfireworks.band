@@ -1,35 +1,21 @@
 name: Playlist pages
 
-# Rebuilds the playlist pages whenever something in playlists/ changes, so a
-# new folder of mp3s gets its own page (and title for link previews).
+# Fails a pull request if the generated playlist pages don't match what's in
+# playlists/ (for example, the pre-commit hook wasn't turned on, or files were
+# uploaded on github.com). Fix it by running the build script and committing.
 on:
-  push:
-    branches: [main]
+  pull_request:
     paths: ['playlists/**', '.github/scripts/build-playlists.js']
-  workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
+  contents: read
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node .github/scripts/build-playlists.js
-      - name: Commit updated pages and rebuild the site
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git add -A playlists
-          if git diff --cached --quiet; then exit 0; fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update playlist pages"
-          git push
-          # Make sure GitHub Pages picks up the bot's commit.
-          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+      - run: node .github/scripts/build-playlists.js --check
