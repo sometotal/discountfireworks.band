@@ -4,6 +4,12 @@ body { font-family: 'Helvetica Neue',Arial,sans-serif; }
 h3 { margin-top: 35px; }
 p { text-align: left; }
 .closing p { text-align: center; }
+.newrecord { margin: 25px 0 0; line-height: 1.5; }
+.newrecord img { display: block; width: 100%; height: auto; }
+.newrecord p { text-align: center; margin: 12px 0; }
+.newrecord strong { letter-spacing: 2px; }
+.newrecord a.button:link, .newrecord a.button:visited { display: inline-block; padding: 8px 18px; background-color: #E3161F; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold; }
+.newrecord a.button:hover, .newrecord a.button:active { background-color: #B5121A; color: #fff; }
 .alertbox { background-color: yellow; border: 3px solid red; font-size: 1.5em; margin: 35px 0; padding: 20px; }
 a:link, a:visited, a:hover, a:active {
   color: #A00;
