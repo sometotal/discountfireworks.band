@@ -4,8 +4,10 @@ body { font-family: 'Helvetica Neue',Arial,sans-serif; }
 h3 { margin-top: 35px; }
 p { text-align: left; }
 .closing p { text-align: center; }
-.newrecord { background-color: yellow; border: 3px solid red; font-size: 1.15em; line-height: 1.5; margin: 20px 0 0; padding: 15px; }
-.newrecord strong { font-size: 1.3em; letter-spacing: 1px; }
+.newrecord { background-color: #1a1a1a; color: #fff; border-radius: 6px; line-height: 1.5; margin: 20px 0 0; padding: 18px 15px; }
+.newrecord strong { display: block; font-size: 1.5em; letter-spacing: 3px; margin-bottom: 4px; }
+.newrecord a:link, .newrecord a:visited { display: inline-block; margin-top: 10px; padding: 6px 14px; background-color: #A00; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold; }
+.newrecord a:hover, .newrecord a:active { background-color: #C00; color: #fff; }
 .alertbox { background-color: yellow; border: 3px solid red; font-size: 1.5em; margin: 35px 0; padding: 20px; }
 a:link, a:visited, a:hover, a:active {
   color: #A00;
